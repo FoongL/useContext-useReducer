@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+// We can use useState alongside useReducer
+import React from 'react';
 
-function App() {
+// import components
+import TaskForm from './components/TaskForm'
+import TaskList from './components/TaskList'
+
+// import Provider
+import ToDoProvider from './provider/ToDoProvider'
+
+
+// // State-management code is in ./todo
+// import {
+//   toDoReducer,
+//   initialState,
+//   addAction,
+//   markAction,
+//   deleteAction,
+// } from './todo';
+
+
+
+export default function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // Set the value of global state the dispatch function to make
+    // the dispatch function available in all components without
+    // passing props.
+    <ToDoProvider>
+      <div className="App">
+        <TaskForm />
+        <h3>Tasks</h3>
+        <TaskList/>
+      </div>
+    </ToDoProvider>
   );
 }
 
-export default App;
+
