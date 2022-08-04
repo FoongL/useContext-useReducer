@@ -4,9 +4,7 @@ import { deleteAction, markAction } from "../reducer/todo";
 
 
 function TaskList() {
-  const tasks = useContext(ToDoListContext);
-  // Retrieve the dispatch function from global state with useContext
-  const dispatch = useContext(TodosContext);
+  const {ToDoDispatch: dispatch, todoList: tasks} = useContext(TodosContext);
 
   // Dispatch the mark action that affects the todoList state in the
   // App component.

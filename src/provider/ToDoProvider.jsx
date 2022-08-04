@@ -18,10 +18,10 @@ const ToDoProvider = ({ children }) => {
 
 
   return (
-    <TodosContext.Provider value={ToDoDispatch}>
-        <ToDoListContext.Provider value={todoList} >
+    <TodosContext.Provider value={{ToDoDispatch, todoList}}>
+        {/* <ToDoListContext.Provider value={todoList} > */}
         {children}
-        </ToDoListContext.Provider>
+        {/* </ToDoListContext.Provider> */}
     </TodosContext.Provider>
   );
 };

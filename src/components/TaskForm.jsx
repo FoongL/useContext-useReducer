@@ -6,7 +6,7 @@ const TaskForm = () => {
   // The TaskForm component has local state managed by useState
   const [task, setTask] = useState("");
   // Retrieve the dispatch function from global state with useContext
-  const dispatch = useContext(TodosContext);
+  const { ToDoDispatch: dispatch } = useContext(TodosContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
