@@ -1,15 +1,21 @@
+import { GET, ADD, MARK, DELETE } from "./todoActionTypes";
+import axios from "axios";
+
 export const initialState = [
   {
     name: "Fully understand useContext + useReducer",
     done: false,
+    assignedTo: "Foong",
   },
 ];
 
-const GET = "GET";
-const ADD = "ADD";
-const MARK = "MARK";
-const DELETE = "DELETE";
+// Now imported from external file
+// const GET = "GET";
+// const ADD = "ADD";
+// const MARK = "MARK";
+// const DELETE = "DELETE";
 
+// anything we pass INTO dispatch(ACTION) gets taken into reducers(action)
 export function toDoReducer(state, action) {
   switch (action.type) {
     case GET:
@@ -41,19 +47,24 @@ export function getAction() {
     payload: {},
   };
 }
-export function addAction(taskText) {
+
+export const addAction = async (taskText) => {
+  const { data } = await axios.get("http://localhost:3030/users/randomName");
+  // if i needed to save data into the database this is where i would do it
   return {
     type: ADD,
     payload: {
       task: {
         name: taskText,
         done: false,
+        assignedTo: data.name,
       },
     },
   };
-}
+};
 
 export function markAction(taskId, done) {
+  // await axois.put(URL, {taskId, done})
   return {
     type: MARK,
     payload: {
@@ -64,6 +75,7 @@ export function markAction(taskId, done) {
 }
 
 export function deleteAction(taskId) {
+  // await axios.delete(URL, {taskId})
   return {
     type: DELETE,
     payload: {

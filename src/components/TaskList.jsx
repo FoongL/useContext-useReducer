@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { TodosContext, ToDoListContext } from "../provider/ToDoProvider";
-import { deleteAction, markAction } from "../todo";
+import { deleteAction, markAction } from "../reducer/todo";
 
 
 function TaskList() {
@@ -19,11 +19,15 @@ function TaskList() {
       {tasks.length > 0 ? (
         tasks.map((task, i) => {
           return (
+            <div style={{borderStyle: 'solid'}}>
             <li key={i}>
               {/* <span className={task.done && `cross-out`}>{task.name}</span>{" "} */}
               {!task.done && (
-                <div>
+                <div style={{marginBottom: '1%', marginTop:'1%'}}>
                 <span className={task.done && `cross-out`}>{task.name}</span>{" "}
+                <br/>
+                <p>Assigned To: {task.assignedTo} </p>
+                <br/>
                 <button
                   id={i}
                   className="baseButton done"
@@ -31,11 +35,15 @@ function TaskList() {
                 >
                   Done
                 </button>
+                <br/>
                 </div>
               )}
               {task.done && (
-                <div>
+                <div style={{marginBottom: '1%', marginTop:'1%'}}>
                 <span className={task.done && `cross-out`} style={{textDecoration:'line-through'}}>{task.name}</span>{" "}
+                <br/>
+                <p>Assigned To: {task.assignedTo} </p>
+                <br/>
                 <button
                   id={i}
                   className="baseButton undo"
@@ -50,10 +58,13 @@ function TaskList() {
                 id={i}
                 className="baseButton delete"
                 onClick={() => dispatch(deleteAction(i))}
+                
               >
                 Delete
               </button>
+              <br/>
             </li>
+            </div>
           );
         })
       ) : (

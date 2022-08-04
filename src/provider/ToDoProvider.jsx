@@ -3,7 +3,7 @@ import React, { useReducer } from "react";
 import {
     toDoReducer,
     initialState
-} from '../todo'
+} from '../reducer/todo'
 // import {ThemeContext} from './App'
 
 // Create empty global state
